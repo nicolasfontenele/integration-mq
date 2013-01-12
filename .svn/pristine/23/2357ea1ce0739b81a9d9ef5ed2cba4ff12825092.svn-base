@@ -1,0 +1,20 @@
+package com.bnb.ws.cnpj.consume;
+
+import javax.xml.namespace.QName;
+
+public class CNPJConsumer {
+	
+	private static final QName SERVICE_NAME = new QName("http://cnpj.infoconv.s255.bnb.gov.br/", "ConsultarCNPJ");
+
+	
+	public CNPJConsumer() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public String consume()
+	{
+		return null;
+	}
+	
+
+}

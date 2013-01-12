@@ -1,0 +1,62 @@
+package com.bnb.integration;
+
+import java.util.Properties;
+
+/**
+ * 
+ * @author nicolas
+ * 
+ *         Class Responsible to store all component configuration
+ * 
+ */
+
+public class IntegratorConfiguration {
+
+	private static IntegratorConfiguration single;
+	private static boolean instanceFlag = false;
+	
+	private IntegratorConfiguration()
+	{
+		
+	}
+	
+	public IntegratorConfiguration getInstance()
+	{
+		if(!instanceFlag)
+		{
+			single = new IntegratorConfiguration();
+			instanceFlag = true;
+		}
+		return single;
+	}
+	
+	private String queueInName;
+	private String queueInHostname;
+	private String queueInPort;
+	private String queueInChannel;
+	private String queueOutName;
+	private String queueOutHostname;
+	private String queueOutPort;
+	private String queueOutChannel;
+	private String cpfOrCnpj;
+	private String userCPF;
+	
+	
+	public void buildConfigurationFromProperties(Properties properties) {
+
+		queueInName = properties.getProperty("queue_in_name");
+		queueInHostname = properties.getProperty("queue_in_host");
+		queueInPort = properties.getProperty("queue_in_port");
+		queueInChannel = properties.getProperty("queue_in_channel");
+		queueOutName = properties.getProperty("queue_out_name");
+		queueOutHostname = properties.getProperty("queue_out_host");
+		queueOutPort = properties.getProperty("queue_out_port");
+		queueOutChannel = properties.getProperty("queue_out_channel");
+		cpfOrCnpj = properties.getProperty("pessoa");
+		userCPF = properties.getProperty("cpf_usuario");
+		
+	}
+	
+	
+
+}

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://cnpj.infoconv.s255.bnb.gov.br/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://cnpj.infoconv.s255.bnb.gov.br/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://cnpj.infoconv.s255.bnb.gov.br/">
+      <s:element name="ConsultarCNPJP1">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="CNPJ" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CPFUsuario" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCNPJP1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ConsultarCNPJP1Result" type="tns:ArrayOfBNBCNPJPerfil1"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBNBCNPJPerfil1">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="CNPJPerfil1" nillable="true" type="tns:BNBCNPJPerfil1"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BNBCNPJPerfil1">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="CNPJ" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Estabelecimento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeEmpresarial" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeFantasia" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="SituacaoCadastral" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CidadeExterior" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodigoPais" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomePais" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Erro" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultarCNPJP1T">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="CNPJ" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CPFUsuario" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCNPJP1TResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ConsultarCNPJP1TResult" type="tns:ArrayOfBNBCNPJPerfil1"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCNPJP2">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="CNPJ" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CPFUsuario" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCNPJP2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ConsultarCNPJP2Result" type="tns:ArrayOfBNBCNPJPerfil2"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBNBCNPJPerfil2">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="CNPJPerfil2" nillable="true" type="tns:BNBCNPJPerfil2"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BNBCNPJPerfil2">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="CNPJ" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Estabelecimento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeEmpresarial" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeFantasia" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="SituacaoCadastral" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataSituacaoCadastral" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CidadeExterior" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodigoPais" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomePais" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NaturezaJuridica" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataAbertura" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CNAEPrincipal" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CNAESecundario" type="tns:ArrayOfString"/>
+          <s:element maxOccurs="1" minOccurs="0" name="TipoLogradouro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Logradouro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroLogradouro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Complemento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Bairro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CEP" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="UF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodigoMunicipio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeMunicipio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DDD1" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Telefone1" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DDD2" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Telefone2" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Email" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Erro" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="string" nillable="true" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultarCNPJP2T">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="CNPJ" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CPFUsuario" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCNPJP2TResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ConsultarCNPJP2TResult" type="tns:ArrayOfBNBCNPJPerfil2"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCNPJP3">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="CNPJ" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CPFUsuario" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCNPJP3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ConsultarCNPJP3Result" type="tns:ArrayOfBNBCNPJPerfil3"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBNBCNPJPerfil3">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="CNPJPerfil3" nillable="true" type="tns:BNBCNPJPerfil3"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BNBCNPJPerfil3">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="CNPJ" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Estabelecimento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeEmpresarial" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeFantasia" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="SituacaoCadastral" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataSituacaoCadastral" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CidadeExterior" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodigoPais" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomePais" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NaturezaJuridica" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataAbertura" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CNAEPrincipal" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CNAESecundario" type="tns:ArrayOfString"/>
+          <s:element maxOccurs="1" minOccurs="0" name="TipoLogradouro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Logradouro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroLogradouro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Complemento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Bairro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CEP" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="UF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodigoMunicipio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeMunicipio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DDD1" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Telefone1" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DDD2" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Telefone2" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Email" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CPFResponsavel" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeResponsavel" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CapitalSocial" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Sociedade" type="tns:ArrayOfBNBSocio"/>
+          <s:element maxOccurs="1" minOccurs="0" name="TipoCRCContadorPJ" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ClassificacaoCRCContadorPJ" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroCRCContadorPJ" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="UFCRCContadorPJ" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CNPJContador" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="TipoCRCContadorPF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ClassificacaoCRCContadorPF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroCRCContadorPF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="UFCRCContadorPF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CPFContador" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Porte" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="OpcaoSimples" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataOpcaoSimples" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataExclusaoSimples" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CNPJSucedida" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CNPJSucessora" type="tns:ArrayOfString"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Erro" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBNBSocio">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="BNBSocio" nillable="true" type="tns:BNBSocio"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BNBSocio">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="Tipo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Nome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Numero" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="PercentualParticipacao" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodigoPaisOrigem" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomePaisOrigem" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultarCNPJP3T">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="CNPJ" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CPFUsuario" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCNPJP3TResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ConsultarCNPJP3TResult" type="tns:ArrayOfBNBCNPJPerfil3"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConsultarCNPJP3SoapOut">
+    <wsdl:part element="tns:ConsultarCNPJP3Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP2TSoapIn">
+    <wsdl:part element="tns:ConsultarCNPJP2T" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP2TSoapOut">
+    <wsdl:part element="tns:ConsultarCNPJP2TResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP2SoapOut">
+    <wsdl:part element="tns:ConsultarCNPJP2Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP1TSoapIn">
+    <wsdl:part element="tns:ConsultarCNPJP1T" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP1TSoapOut">
+    <wsdl:part element="tns:ConsultarCNPJP1TResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP1SoapOut">
+    <wsdl:part element="tns:ConsultarCNPJP1Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP3SoapIn">
+    <wsdl:part element="tns:ConsultarCNPJP3" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP2SoapIn">
+    <wsdl:part element="tns:ConsultarCNPJP2" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP3TSoapIn">
+    <wsdl:part element="tns:ConsultarCNPJP3T" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP1SoapIn">
+    <wsdl:part element="tns:ConsultarCNPJP1" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCNPJP3TSoapOut">
+    <wsdl:part element="tns:ConsultarCNPJP3TResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ConsultarCNPJSoap">
+    <wsdl:operation name="ConsultarCNPJP1">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consultar CNPJ - Perfil 1</wsdl:documentation>
+      <wsdl:input message="tns:ConsultarCNPJP1SoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:ConsultarCNPJP1SoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCNPJP2">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consultar CNPJ - Perfil 2</wsdl:documentation>
+      <wsdl:input message="tns:ConsultarCNPJP2SoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:ConsultarCNPJP2SoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCNPJP3">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consultar CNPJ - Perfil 3</wsdl:documentation>
+      <wsdl:input message="tns:ConsultarCNPJP3SoapIn">
+    </wsdl:input>
+      <wsdl:output message="tns:ConsultarCNPJP3SoapOut">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultarCNPJ" type="tns:ConsultarCNPJSoap">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ConsultarCNPJP1">
+      <soap:operation soapAction="http://cnpj.infoconv.s255.bnb.gov.br/ConsultarCNPJP1"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCNPJP2">
+      <soap:operation soapAction="http://cnpj.infoconv.s255.bnb.gov.br/ConsultarCNPJP2"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCNPJP3">
+      <soap:operation soapAction="http://cnpj.infoconv.s255.bnb.gov.br/ConsultarCNPJP3"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultarCNPJ">
+    <wsdl:port binding="tns:ConsultarCNPJ" name="ConsultarCNPJ">
+      <soap:address location="http://d001wwv07:80/S255-InfoconvWS/services/ConsultarCNPJ"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

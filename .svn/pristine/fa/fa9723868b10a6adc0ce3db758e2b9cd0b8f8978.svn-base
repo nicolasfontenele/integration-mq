@@ -1,0 +1,33 @@
+package com.bnb.integration;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Parser {
+	
+	/**
+	 * Changing implementation according message input formatting
+	 * 
+	 * @param mqText data from the MQ
+	 * @return List of message to be used as argument in the WS
+	 */
+	public List<String> parseFromMQToWS(List<String> mqText)
+	{
+		 
+		List<String> wsMessages = new ArrayList<String>();
+		
+		for (String each : mqText)
+		{
+			each = each.replace(" ", ";");
+			wsMessages.add(each);
+		}
+		
+		return wsMessages;
+	}
+	
+	public void parseFromWSToMQ(String wsText)
+	{
+		
+	}
+
+}

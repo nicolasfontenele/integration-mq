@@ -1,0 +1,74 @@
+package com.bnb.mq;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.ibm.mq.MQException;
+
+public class MQManager {
+
+	private MQSender mqSender;
+	private MQReceiver mqReceiver;
+
+	public MQManager() {
+
+		mqSender = new MQSender(MQInterface.DEFAULT_HOST,
+				MQInterface.DEFAULT_PORT, MQInterface.DEFAULT_CHANNEL_OUT);
+		mqReceiver = new MQReceiver(MQInterface.DEFAULT_HOST,
+				MQInterface.DEFAULT_PORT, MQInterface.DEFAULT_CHANNEL_IN);
+
+	}
+
+	public void sendMessage(String message) {
+
+		try {
+			mqSender.connect();
+			mqSender.send(MQInterface.DEFAULT_QUEUE_NAME_OUT, message);
+			mqSender.disconnect();
+		} catch (MQException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public ArrayList<String> receiveMessage() {
+		
+		ArrayList<String> result = new ArrayList<String>();
+		
+		try {
+			mqReceiver.connect();
+
+			while (true) {
+				String message = null;
+
+				try {
+
+					message = mqReceiver.receive(MQInterface.DEFAULT_QM_NAME);
+					result.add(message);
+
+				} catch (MQException e) {
+					if (e.getReason() == 2033) {
+						break;
+					}
+				}
+
+				System.out.println("Mensagem recebida: " + message);
+			}
+			
+			return result;
+
+		} catch (MQException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				mqReceiver.disconnect();
+			} catch (MQException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+}

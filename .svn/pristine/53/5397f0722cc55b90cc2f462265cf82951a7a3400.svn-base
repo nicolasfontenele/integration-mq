@@ -1,0 +1,15 @@
+package com.bnb.integration;
+
+public class Parser {
+	
+	public void parseFromMQToWS(String mqText)
+	{
+		
+	}
+	
+	public void parseFromWSToMQ(String wsText)
+	{
+		
+	}
+
+}

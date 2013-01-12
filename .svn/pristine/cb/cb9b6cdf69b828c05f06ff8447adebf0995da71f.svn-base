@@ -1,0 +1,56 @@
+package com.bnb.integration;
+
+import com.bnb.mq.MQManager;
+import com.bnb.ws.ServiceClient;
+import com.bnb.ws.cnpj.ArrayOfBNBCNPJPerfil2;
+import com.bnb.ws.cpf.ArrayOfBNBPessoaPerfil2;
+
+public class Integrator {
+	
+	MQManager mqManager;
+	Parser parser; 
+	ServiceClient client;
+	
+	
+	public Integrator() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public void doIntegration(IntegratorConfiguration configuration)
+	{
+		String data = retrieveDataFromMQ();
+		String parsedData = parseData(data);
+		Object wsListData = client.consume(parsedData, "readCPFUserFromProperties" ); 
+		
+		publicIntoMQ(wsListData);
+		
+		
+	}
+	
+	public void publicIntoMQ(Object wsListData) {
+		
+		//parseDataToMQ format
+		
+		if (wsListData instanceof ArrayOfBNBCNPJPerfil2)
+		{
+			//do a for loop public each data into MQ
+			
+		} else if (wsListData instanceof ArrayOfBNBPessoaPerfil2)
+		{
+			//do a for loop to public each data into MQ
+		}
+		
+		
+	}
+
+	public String retrieveDataFromMQ()
+	{
+		return "";		
+	}
+	
+	public String parseData(String dataMQ)
+	{
+		return "01236702336;03511337399";
+	}
+	
+}

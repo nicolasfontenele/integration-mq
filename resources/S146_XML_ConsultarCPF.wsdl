@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://cpf.infoconv.s255.bnb.gov.br/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://cpf.infoconv.s255.bnb.gov.br/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://cpf.infoconv.s255.bnb.gov.br/" xmlns:s="http://www.w3.org/2001/XMLSchema">
+      <s:element name="ConsultarCPFP1">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ListaDeCPF" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CPFUsuario" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCPFP1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ConsultarCPFP1Result" type="tns:ArrayOfBNBPessoaPerfil1"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBNBPessoaPerfil1">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="PessoaPerfil1" nillable="true" type="tns:BNBPessoaPerfil1"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BNBPessoaPerfil1">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="CPF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Nome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="SituacaoCadastral" type="s:string">
+
+          </s:element>
+          <s:element maxOccurs="1" minOccurs="0" name="ResidenteExterior" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeMae" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataAtualizacao" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Erro" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultarCPFP2">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ListaDeCPF" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CPFUsuario" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCPFP2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ConsultarCPFP2Result" type="tns:ArrayOfBNBPessoaPerfil2"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBNBPessoaPerfil2">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="PessoaPerfil2" nillable="true" type="tns:BNBPessoaPerfil2"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BNBPessoaPerfil2">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="CPF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Nome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="SituacaoCadastral" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ResidenteExterior" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeMae" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataNascimento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Sexo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="TituloEleitor" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="AnoObito" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataAtualizacao" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Erro" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultarCPFP3">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ListaDeCPF" type="s:string"/>
+            <s:element maxOccurs="1" minOccurs="0" name="CPFUsuario" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarCPFP3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="1" minOccurs="0" name="ConsultarCPFP3Result" type="tns:ArrayOfBNBPessoaPerfil3"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBNBPessoaPerfil3">
+        <s:sequence>
+          <s:element maxOccurs="unbounded" minOccurs="0" name="PessoaPerfil3" nillable="true" type="tns:BNBPessoaPerfil3"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BNBPessoaPerfil3">
+        <s:sequence>
+          <s:element maxOccurs="1" minOccurs="0" name="CPF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Nome" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="SituacaoCadastral" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ResidenteExterior" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodigoPaisExterior" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomePaisExterior" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NomeMae" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataNascimento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Sexo" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NaturezaOcupacao" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="OcupacaoPrincipal" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="ExercicioOcupacao" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="TipoLogradouro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Logradouro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="NumeroLogradouro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Complemento" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CEP" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Bairro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="CodigoMunicipio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Municipio" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="UF" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DDD" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Telefone" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="UnidadeAdministrativa" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="AnoObito" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Estrangeiro" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="DataAtualizacao" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="TituloEleitor" type="s:string"/>
+          <s:element maxOccurs="1" minOccurs="0" name="Erro" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConsultarCPFP2SoapIn">
+    <wsdl:part element="tns:ConsultarCPFP2" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCPFP1SoapOut">
+    <wsdl:part element="tns:ConsultarCPFP1Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCPFP2SoapOut">
+    <wsdl:part element="tns:ConsultarCPFP2Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCPFP3SoapOut">
+    <wsdl:part element="tns:ConsultarCPFP3Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCPFP3SoapIn">
+    <wsdl:part element="tns:ConsultarCPFP3" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultarCPFP1SoapIn">
+    <wsdl:part element="tns:ConsultarCPFP1" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="ConsultarCPFSoap">
+    <wsdl:operation name="ConsultarCPFP1">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consultar CPF - Perfil 1</wsdl:documentation>
+      <wsdl:input message="tns:ConsultarCPFP1SoapIn"/>
+      <wsdl:output message="tns:ConsultarCPFP1SoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCPFP2">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consultar CPF - Perfil 2</wsdl:documentation>
+      <wsdl:input message="tns:ConsultarCPFP2SoapIn"/>
+      <wsdl:output message="tns:ConsultarCPFP2SoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCPFP3">
+<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Consultar CPF - Perfil 3</wsdl:documentation>
+      <wsdl:input message="tns:ConsultarCPFP3SoapIn"/>
+      <wsdl:output message="tns:ConsultarCPFP3SoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultarCPF" type="tns:ConsultarCPFSoap">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ConsultarCPFP1">
+      <soap:operation soapAction="http://cpf.infoconv.s255.bnb.gov.br/ConsultarCPFP1"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCPFP2">
+      <soap:operation soapAction="http://cpf.infoconv.s255.bnb.gov.br/ConsultarCPFP2"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarCPFP3">
+      <soap:operation soapAction="http://cpf.infoconv.s255.bnb.gov.br/ConsultarCPFP3"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultarCPF">
+    <wsdl:port binding="tns:ConsultarCPF" name="ConsultarCPF">
+      <soap:address location="http://d001wwv07:80/S255-InfoconvWS/services/ConsultarCPF"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

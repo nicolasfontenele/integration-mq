@@ -1,0 +1,82 @@
+package com.bnb.mq;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+
+import com.bnb.integration.IntegratorConfiguration;
+import com.bnb.main.BNBComponent;
+import com.ibm.mq.MQException;
+
+public class MQManager {
+
+	private MQSender mqSender;
+	private MQReceiver mqReceiver;
+	private IntegratorConfiguration configuration;
+	
+	public MQManager() {
+		
+		configuration = IntegratorConfiguration.getInstance();
+		
+		mqReceiver = new MQReceiver(configuration.getQueueInHostname(),
+				Integer.valueOf(configuration.getQueuePort()), configuration.getQueueChannel());
+		mqSender= new MQSender(configuration.getQueueOutHostname(),
+				Integer.valueOf(configuration.getQueuePort()), configuration.getQueueChannel());
+
+	}
+
+	public void sendMessage(String message) {
+
+		try {
+			mqSender.connect(configuration.getManagerName());
+			mqSender.send(MQInterface.DEFAULT_QUEUE_NAME_OUT, message);
+			mqSender.disconnect();
+		} catch (MQException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<String> receiveMessage() {
+		
+		List<String> result = new ArrayList<String>();
+		
+		try {
+			mqReceiver.connect(configuration.getManagerName());
+
+			while (true) {
+				String message = null;
+
+				try {
+
+					message = mqReceiver.receive(configuration.getQueueInName());
+					result.add(message);
+
+				} catch (MQException e) {
+					if (e.getReason() == 2033) {
+						mqReceiver.disconnect();
+						return result;
+						
+					}
+				}
+
+				BNBComponent.logger.log(Level.INFO,"Mensagem recebida: " + message);
+			}			
+			
+
+		} catch (MQException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				mqReceiver.disconnect();
+			} catch (MQException e) {
+				BNBComponent.logger.log(Level.SEVERE," Unable to disconnect");
+			}
+		}
+		return result;
+	}
+}

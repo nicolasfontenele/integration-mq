@@ -1,0 +1,23 @@
+
+#Nome da fila de entrada
+queue_in_name=fila_in
+#Hostname da fila de entrada do componente
+queue_in_host=localhost
+#Porta da fila de entrada do componente
+queue_in_port=1414
+#Canal da Fila de entrada do componente
+queue_in_channel=channel
+#Nome da fila de saida do componente
+queue_out_name=fila_out
+#Hostname da fila de saida do componente
+queue_out_host=localhost
+#Porta da fila de saida do componente
+queue_out_port=1414
+#Canal da fila de saida do componente
+queue_out_channel=channel
+#Nome do manager
+queue_manager=manager
+#Qual integração será feita, se 'cpf' ou 'cnpj'
+pessoa=cnpj
+#Cpf do usuario requisitante da integração
+cpf_usuario=01236702336

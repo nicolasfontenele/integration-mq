@@ -1,0 +1,236 @@
+/*
+ * Copyright (c) 2011, Otavio Rodolfo Piske <angusyoung@gmail.com>
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 		* Redistributions of source code must retain the above copyright
+ * 		notice, this list of conditions and the following disclaimer.
+ * 		* Redistributions in binary form must reproduce the above copyright
+ * 		notice, this list of conditions and the following disclaimer in the
+ * 		documentation and/or other materials provided with the distribution.
+ * 		* Neither the name of the <organization> nor the
+ * 		names of its contributors may be used to endorse or promote products
+ * 		derived from this software without specific prior written permission.
+ * 	
+ * 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * 	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * 	DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ * 	DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * 	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * 	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * 	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * 	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.bnb.mq;
+
+import java.io.EOFException;
+import java.io.IOException;
+
+import com.ibm.mq.MQC;
+import com.ibm.mq.MQEnvironment;
+import com.ibm.mq.MQException;
+import com.ibm.mq.MQGetMessageOptions;
+import com.ibm.mq.MQMessage;
+import com.ibm.mq.MQQueue;
+import com.ibm.mq.MQQueueManager;
+
+public abstract class MQInterface {
+	static public final short DEFAULT_PORT = 1414;	
+	static protected String DEFAULT_HOST = "localhost";
+	static public String DEFAULT_QM_NAME = "manager";
+	
+	static public String DEFAULT_CHANNEL_OUT = "TUTO001.CHANNEL";
+	static public String DEFAULT_QUEUE_NAME_OUT = "TUTO001.REQUEST";
+	
+	static public String DEFAULT_CHANNEL_IN = "TUTO001.CHANNEL";
+	static public String DEFAULT_QUEUE_NAME_IN = "TUTO001.REQUEST";	
+	
+	// Objeto que abstrai os acessos ao queue manager
+	protected MQQueueManager queueManager = null;
+	
+	/**
+	 * Construtor
+	 * @param hostname
+	 * @param port
+	 * @param channel
+	 */
+	protected MQInterface(String hostname, int port, String channel) {
+		// Seta o hostname do servidor MQ
+		MQEnvironment.hostname = hostname;
+		
+		// Seta a porta do servidor MQ
+		MQEnvironment.port = port;
+		
+		// Seta o canal padrao
+		MQEnvironment.channel = channel;
+	}
+	
+	/**
+	 * Conecta no servidor MQ
+	 * @throws MQException
+	 */
+	public void connect(String managerName) throws MQException {
+		disconnect();
+		
+		/* 
+		 * Cria uma nova instancia do objeto de acesso ao
+		 * queue manager, passando o nome da fila como 
+		 * parametro 
+		 */
+		queueManager = new MQQueueManager(managerName);
+	}
+	
+	
+	/**
+	 * Disconecta do servidor MQ
+	 * @throws MQException
+	 */
+	public void disconnect() throws MQException {
+		/* 
+		 * Caso exista uma conexao aberta anteriormente, 
+		 * fecha-a para evitar desperdicios de recursos
+		 * no servidor MQ.
+		 */
+		if (queueManager != null) {
+			if (queueManager.isConnected()) {
+				queueManager.disconnect();
+			}
+		}
+	}
+	
+	
+	/** 
+	 * Abre uma fila para escrita
+	 * @param queueName Nome da fila
+	 */
+	protected MQQueue openQueueForOutput(String queueName) throws MQException {
+		/*
+		 * Define as opcoes de acesso a fila: 
+		 * - MQOO_OUTPUT = abre a fila para inclusao de mensagens (saida, host -> mq)
+		 * - MQOO_FAIL_IF_QUIESCIENG = falha se o servidor estiver sendo desligado
+		 */
+		int openOptions = MQC.MQOO_OUTPUT | MQC.MQOO_FAIL_IF_QUIESCING;
+		
+		return queueManager.accessQueue(queueName, openOptions);
+	}
+	
+	
+	/**
+	 * Envia dados pela fila
+	 * @param queueName
+	 * @param data
+	 * @throws MQException
+	 * @throws IOException
+	 */
+	public void send(String queueName, String data) throws MQException, IOException {
+		MQQueue queue = openQueueForOutput(queueName);
+		MQMessage message = new MQMessage();
+		
+		/*
+		 * Seta o formato da mensagem. No nosso exemplo 
+		 * estamos mandando uma mensagem de texto no MQ,
+		 * desta forma o formato e String.
+		 */
+		message.format = MQC.MQFMT_STRING;
+		
+		/* 
+		 * Tempo de vida da mensagem. Caso expirado, o 
+		 * queue manager podera descartar a mensagem se  
+		 * necessario
+		 */
+		message.expiry = 10000;
+		
+		// Serializa o objeto
+		message.writeString(data);
+		
+		// Coloca a mensagem na fila
+		queue.put(message);
+		
+		// Efetiva a inclusao da mensagem na fila
+		queueManager.commit();
+		
+		closeQueue(queue);
+	}
+	
+	
+	/** 
+	 * Abre uma fila para leitura
+	 * @param queueName Nome da fila
+	 */
+	protected MQQueue openQueueForInput(String queueName) throws MQException {
+		
+		/*
+		 * Define as opcoes de acesso a fila: 
+		 * - MQOO_INPUT_AS_Q_DEF = abre a fila para obtencao de mensagens (entrada, mq -> host) 
+		 * utilizando as definicoes padrao da fila
+		 * - MQOO_FAIL_IF_QUIESCIENG = falha se o servidor estiver sendo desligado
+		 */
+		int openOptions = MQC.MQOO_INPUT_AS_Q_DEF | MQC.MQOO_FAIL_IF_QUIESCING;
+		return queueManager.accessQueue(queueName, openOptions);
+		
+	}
+	
+	
+	/**
+	 * Recebe dados pela fila
+	 * @param queueName
+	 * @return
+	 * @throws MQException
+	 * @throws IOException
+	 */
+	public String receive(String queueName) throws MQException, IOException {
+		MQMessage message = new MQMessage();
+		MQQueue queue = null;
+		String ret = null;
+		
+		// 
+		MQGetMessageOptions gmo = new MQGetMessageOptions();
+		
+		/* 
+		 * O MQ fornece diferentes formas de relacionar uma mensagem 
+		 * previamente enviada com a sua resposta.  
+		 */
+		gmo.matchOptions = MQC.MQMO_NONE;
+		
+		// Habilita a espera no recebimento de mensagens
+		gmo.options += MQC.MQGMO_ALL_MSGS_AVAILABLE;
+		
+		// Habilita a espera ilimitada
+		//gmo.waitInterval = MQC.MQEI_UNLIMITED;
+		
+	
+		/*
+		 * Abre a queue para leitura 
+		 */
+		queue = openQueueForInput(queueName);
+		
+		/*
+		 * Obtem a mensagem da fila, utilizando as opcoes definidas no 
+		 * objeto gmo
+		 */	
+		
+		queue.get(message, gmo);
+
+		try { 
+			ret =  message.readStringOfCharLength(message.getMessageLength());
+		} 
+		catch (EOFException e) {
+			System.out.println("A leitura da mensagem terminou abruptamente");
+		}
+		finally {
+			closeQueue(queue);
+			queueManager.commit();
+		}
+		
+		
+		return ret;
+	}
+	
+	
+	
+	abstract protected void closeQueue(MQQueue queue) throws MQException;
+	
+}

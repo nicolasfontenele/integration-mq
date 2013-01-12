@@ -1,0 +1,19 @@
+package com.bnb.integration;
+
+import java.util.List;
+
+public class Parser {
+	
+	public String[] parseFromMQToWS(String mqText)
+	{
+		String[] allData = mqText.split(" ");
+		return allData;
+		
+	}
+	
+	public void parseFromWSToMQ(String wsText)
+	{
+		
+	}
+
+}
